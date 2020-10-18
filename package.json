@@ -1,0 +1,21 @@
+{
+  "name": "recipebook",
+  "version": "1.0.0",
+  "description": "Recipe manager",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Raihan Ibrahim",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "*",
+    "consolidate": "*",
+    "dust": "*",
+    "dustjs-helpers": "^1.7.4",
+    "dustjs-linkedin": "^2.7.5",
+    "expres": "*",
+    "express": "^4.17.1",
+    "pg": "*"
+  }
+}
