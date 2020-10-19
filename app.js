@@ -55,6 +55,7 @@ app.get('/', function(req, res){
 });
 
 app.post('/add',function(req, res){
+    client.query("SELECT setval('recipes_id_seq', COALESCE((SELECT MAX(id)+1 FROM recipes), 1), false)");
     client.query('INSERT INTO recipes(name, ingredients, directions) VALUES($1, $2, $3)',
         [req.body.name, req.body.ingredients, req.body.directions]);
         res.redirect('/');
@@ -62,11 +63,13 @@ app.post('/add',function(req, res){
 
 app.delete('/delete/:id', function(req, res){
     client.query('DELETE FROM recipes WHERE id = $1',
-        [req.params.id]);
+        [req.params.id]);    
+    client.query("SELECT setval('recipes_id_seq', COALESCE((SELECT MAX(id)+1 FROM recipes), 1), false)");
         res.send(200);
 })
 
 app.post('/edit', function(req, res) {
+    client.query("SELECT setval('recipes_id_seq', COALESCE((SELECT MAX(id)+1 FROM recipes), 1), false)");
     client.query('UPDATE recipes SET name=$1, ingredients=$2, directions=$3 WHERE id=$4',
         [req.body.name, req.body.ingredients, req.body.directions, req.body.id]);
         res.redirect('/');
