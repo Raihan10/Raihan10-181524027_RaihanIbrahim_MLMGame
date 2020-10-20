@@ -10,8 +10,6 @@
         <div class="well">
             <h4>
                 {name}
-                
-            </button>
             </h4>
 
             <div>
